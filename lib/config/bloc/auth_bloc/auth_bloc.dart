@@ -10,7 +10,7 @@ part 'auth_state.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthRepository repository;
   AuthBloc(this.repository) : super(AuthInitial()) {
-    on<AuthEvent>((event, emit) async {
+    on<AppStarted>((event, emit) async {
       final bool hasToken = await repository.hasToken();
       if (hasToken) {
         emit(AuthAuthenticate());
